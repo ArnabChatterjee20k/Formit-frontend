@@ -6,13 +6,11 @@ import { Border, ActiveBorder } from "../../../components/ui/Border";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { useState } from "react";
 import EditField from "./EditField";
 
 const RADIUS = 8;
 
-export default function FieldCard({ title, description, children }) {
-  const [edit, setEdit] = useState(false);
+export default function FieldCard({ title, description,edit, children }) {
   //   handle the editing using the context
   return (
     <Paper
@@ -21,20 +19,8 @@ export default function FieldCard({ title, description, children }) {
         position: "relative",
         backgroundColor: (theme) => theme.palette.grey[50],
       }}
-      onClick={() => setEdit(true)}
-      onBlur={() => setEdit(false)}
     >
-      <Border
-        sx={{ borderTopRightRadius: RADIUS, borderTopLeftRadius: RADIUS }}
-      />
       {edit && <FieldCard.ActiveIndicator />}
-
-      <Stack flexDirection="row" justifyContent="space-between">
-        <FieldCard.Header text={title} edit={edit} />
-        <FieldCard.Menu />
-      </Stack>
-      <FieldCard.Description text={description} edit={edit} />
-
       {children}
     </Paper>
   );
@@ -89,3 +75,7 @@ FieldCard.ActiveIndicator = () => {
     />
   );
 };
+
+FieldCard.Border = () => (
+  <Border sx={{ borderTopRightRadius: RADIUS, borderTopLeftRadius: RADIUS }} />
+);
