@@ -10,15 +10,21 @@ import EditField from "./EditField";
 
 const RADIUS = 8;
 
-export default function FieldCard({ title, description,edit, children }) {
+
+export default function FieldCard({ edit, children , style,...props}) {
   //   handle the editing using the context
   return (
     <Paper
       sx={{
+        display:"flex",
+        flexDirection:"column",
+        border:theme=>`1px solid ${theme.palette.grey[400]}`,
         padding: "2rem",
         position: "relative",
         backgroundColor: (theme) => theme.palette.grey[50],
+        ...style
       }}
+      {...props}
     >
       {edit && <FieldCard.ActiveIndicator />}
       {children}
@@ -37,8 +43,11 @@ FieldCard.Header = ({ text, edit }) => {
   );
 };
 
-FieldCard.Description = ({ text, edit }) => {
-  const style = { fontSize: "1rem", color: (theme) => theme.palette.grey[500] };
+FieldCard.Description = ({ text, edit, heading }) => {
+  const style = {
+    fontSize: "1rem",
+    color: (theme) => (heading ? "black" : theme.palette.grey[500]),
+  };
   if (edit) return <EditField value={text} style={style} />;
   return (
     <Typography variant="subtitle2" sx={style}>
@@ -76,6 +85,6 @@ FieldCard.ActiveIndicator = () => {
   );
 };
 
-FieldCard.Border = () => (
-  <Border sx={{ borderTopRightRadius: RADIUS, borderTopLeftRadius: RADIUS }} />
+FieldCard.Border = ({style}) => (
+  <Border sx={{...style}} />
 );
