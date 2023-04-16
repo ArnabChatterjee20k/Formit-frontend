@@ -11,14 +11,14 @@ export default function FormContextProvider({ children }) {
     description: "",
   });
   const [fieldStack, setFieldStack] = useState([
-    {
-      title: "title",
-      metaData: {
-      type:  "text", // heading , textfield , checkbox , select,
-      // validators: validators || [],
-      // options: options || [], // for select , checkbox
-    },
-    }
+    // {
+    //   title: "title",
+    //   metaData: {
+    //   type:  "text", // heading , textfield , checkbox , select,
+    //   // validators: validators || [],
+    //   // options: options || [], // for select , checkbox
+    // },
+    // }
   ]);
 
   return (
