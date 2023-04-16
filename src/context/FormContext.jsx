@@ -13,7 +13,6 @@ export default function FormContextProvider({ children }) {
   const [fieldStack, setFieldStack] = useState([
     {
       title: "title",
-      description: "what is your name",
       metaData: {
       type:  "text", // heading , textfield , checkbox , select,
       // validators: validators || [],
@@ -23,7 +22,7 @@ export default function FormContextProvider({ children }) {
   ]);
 
   return (
-    <FormContext.Provider value={{ fieldStack,setFieldStack,formDetails,setFormDetails }}>
+    <FormContext.Provider value={{ fieldStack,selectedField,setSelectedField,setFieldStack,formDetails,setFormDetails }}>
       {children}
     </FormContext.Provider>
   );
