@@ -1,13 +1,19 @@
-// by default header
-// else accordingly import the raw mui components
-import FormHeading from "../../Fields/FormHeading/FormHeading";
 import Text from "../../Fields/Text/Text";
+import { FieldContext } from "../Context/FieldContext";
 
-export const Field = ({metaData, ...props}) => {
-  switch (metaData.type) {
-    case "text":
-      return <Text {...props} />;
-    default:
-      return null
-  }
+/**
+ *
+ * @param {props} -> {metadata:{},attributes:{},handlers:{}}
+ * @returns
+ */
+export const Field = ({ metaData, attributes, handlers }) => {
+  const type = metaData.type;
+  return (
+    <FieldContext.Provider value={{ metaData, attributes, handlers }}>
+      {type === "text" ? (
+        // <Text id={id} title={title} description={description} />
+        <Text />
+      ) : null}
+    </FieldContext.Provider>
+  );
 };
