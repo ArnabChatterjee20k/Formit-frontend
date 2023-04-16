@@ -5,10 +5,10 @@ export default function EditField({value,style,onTextChange}) {
   return (
     <TextField
       required
-      defaultValue={value}
+      value={value}
       variant="standard"
       InputProps={{ sx: {...style,margin:2} }}
-      onChange={onTextChange}
+      onChange={(e)=>onTextChange(e.target.value)}
     />
   );
 }
